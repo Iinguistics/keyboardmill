@@ -17,7 +17,7 @@ const HomeScreen = () => {
 
     return (
         <Fragment>
-            <h1>Latest Products</h1>
+            <h1 className ="my-5">Latest Products</h1>
             <Row>
             {renderProducts()}
             </Row>
