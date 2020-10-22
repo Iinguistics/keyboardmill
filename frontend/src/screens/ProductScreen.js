@@ -25,7 +25,7 @@ const ProductScreen = ({ match })=>{
             }
             if(error){
              return(
-                 <h2>Loading...</h2>
+                 <h2>{error}</h2>
              )
             }
             if(product !== null){
