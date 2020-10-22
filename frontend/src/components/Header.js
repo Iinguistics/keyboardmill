@@ -7,7 +7,7 @@ const Header = ()=>{
 
     return(
       <header>
-         <Navbar bg="light"  expand="lg" collapseOnSelect fixed="top">
+         <Navbar expand="lg" collapseOnSelect fixed="top" className="bg">
              <Container>
                <LinkContainer to="/">
                  <Navbar.Brand>Keyboardmill</Navbar.Brand>
