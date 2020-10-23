@@ -4,6 +4,9 @@ import { Row, Col, Image, Card, Button, ListGroup } from 'react-bootstrap';
 import Rating from '../components/Rating';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProduct } from '../actions/productActions';
+import Loader from '../components/bootstrapHelpers/Loader';
+import Message from '../components/bootstrapHelpers/Message';
+
 
 const ProductScreen = ({ match })=>{
     const dispatch = useDispatch();
@@ -20,12 +23,14 @@ const ProductScreen = ({ match })=>{
         const renderProduct = ()=>{
             if(loading){
                 return(
-                    <h2>Loading...</h2>
+                    <Loader />
                 )
             }
             if(error){
              return(
-                 <h2>{error}</h2>
+                 <Message variant='danger'>
+                     {error}
+                 </Message>
              )
             }
             if(product !== null){
@@ -89,10 +94,9 @@ const ProductScreen = ({ match })=>{
                             </Card>
                         </Col>
                     </Row>
-                     </div>
-                   
-                 )  
-            }
+                </div>
+                )  
+          }
        }
 
 

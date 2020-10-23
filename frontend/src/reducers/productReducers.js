@@ -15,10 +15,10 @@ export const productListReducer = (state={ products:[] }, action)=>{
 }
 
 
-export const productReducer = (state={ product:{} }, action)=>{
+export const productReducer = (state={ product:{ reviews: [] } }, action)=>{
     switch(action.type){
         case PRODUCT_REQUEST :
-            return { loading: true, product: {} }
+            return { loading: true, ...state }
         case PRODUCT_SUCCESS:
             return { loading:false, product: action.payload }
         case PRODUCT_FAIL:

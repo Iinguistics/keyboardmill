@@ -1,9 +1,11 @@
 import React, { Fragment, useEffect } from 'react';
 import Product from '../components/Product';
 import { Row, Col } from 'react-bootstrap';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { listProducts } from '../actions/productActions';
+import Loader from '../components/bootstrapHelpers/Loader';
+import Message from '../components/bootstrapHelpers/Message';
+
 
 const HomeScreen = () => {
     const dispatch = useDispatch();
@@ -18,12 +20,14 @@ const HomeScreen = () => {
     const renderProducts = ()=>{
        if(loading){
            return(
-               <h2>Loading...</h2>
+               <Loader />
            )
        }
        if(error){
         return(
-            <h2>{error}</h2>
+            <Message variant='danger'>
+                 {error}
+            </Message>
         )
        }
        if(products !== null){
@@ -34,21 +38,11 @@ const HomeScreen = () => {
                 </Col>
             )  
         })
-       }
+     }
   }
 
 
-    const renderProductss = ()=>{
-        if(productList !== null){
-            return productList.map((item)=>{
-                return(
-                    <Col sm={12} md={6} lg={4} xl={3} key={item._id}>
-                    <Product product={item} />
-                    </Col>
-                )  
-          })
-        }
-    }
+  
 
     return (
         <div>
