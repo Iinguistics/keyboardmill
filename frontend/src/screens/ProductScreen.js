@@ -10,7 +10,7 @@ import Message from '../components/bootstrapHelpers/Message';
 
 
 const ProductScreen = ({ match, history })=>{
-    const [qty, setQty] = useState(0);
+    const [qty, setQty] = useState(1);
 
     const dispatch = useDispatch();
 
@@ -44,9 +44,8 @@ const ProductScreen = ({ match, history })=>{
             }
         }
 
-        const addItemToCart = (id)=>{
+        const addItemToCart = ()=>{
           history.push(`/cart/${match.params.id}?qty=${qty}`)
-          dispatch(addToCart(id))
         }
 
 
@@ -113,7 +112,7 @@ const ProductScreen = ({ match, history })=>{
                                       {selectQty()}
                                     <ListGroup.Item>
                                         <Button 
-                                        onClick={ ()=> addItemToCart(product._id) }
+                                        onClick={ ()=> addItemToCart() }
                                         className='btn-block' 
                                         variant="dark" 
                                         type='button'
