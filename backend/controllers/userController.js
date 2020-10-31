@@ -44,7 +44,7 @@ const getUserProfile = asyncHandler(async(req,res)=>{
 
 
 // Register new user   
-//@route  POST api/users
+//@route  POST api/users/register
 const registerUser = asyncHandler(async(req,res)=>{
     const { name, email, password } = req.body;
 
