@@ -13,12 +13,13 @@ import { logout } from '../actions/userActions';
     const logoutHandler = ()=>{
        dispatch(logout())
     }
-    
+
+   
 
     const renderUserInfo = ()=>{
       if(userInfo){
         return(
-        <NavDropdown title={userInfo.name} id="username">
+        <NavDropdown  title={ userInfo.name } id="username">
          <LinkContainer to="/profile">
            <NavDropdown.Item>Profile</NavDropdown.Item>
          </LinkContainer>

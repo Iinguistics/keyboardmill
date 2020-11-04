@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserDetails, updateUserDetails } from '../actions/userActions';
 import Loader from '../components/bootstrapHelpers/Loader';
 import Message from '../components/bootstrapHelpers/Message';
-
+import { USER_UPDATE_RESET } from '../actions/types';
 
 const ProfileScreen = ({ location, history }) => {
     const [name, setName] = useState("");
@@ -31,13 +31,14 @@ const ProfileScreen = ({ location, history }) => {
         if(!userInfo){
             history.push('/login')
         }else if(!user.name){
+            dispatch({ type: USER_UPDATE_RESET })
             dispatch(getUserDetails('profile')) 
         }else{
             setName(user.name)
             setEmail(user.email)
         }
 
-    }, [userInfo, history, dispatch, user])
+    }, [userInfo, history, dispatch, user, success])
 
 
     const renderPasswordError = ()=>{
@@ -52,9 +53,16 @@ const ProfileScreen = ({ location, history }) => {
             setPasswordError(true);
         }else{
           dispatch(updateUserDetails({ id: user._id, name, email, password }));
+         // reLoad();
          }
         }
+       
 
+        const reLoad = ()=>{
+            setTimeout(()=>{
+            history.go()
+            }, 2000)
+        }
 
        
 
