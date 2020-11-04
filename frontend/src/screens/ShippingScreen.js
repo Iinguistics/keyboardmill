@@ -3,8 +3,10 @@ import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import FormContainer from '../components/FormContainer';
 import { saveShippingAddress } from '../actions/cartActions';
+import CheckOutProgress from '../components/CheckOutProgress';
 
-const ShippingScreen = ({ history }) => {
+
+const ShippingScreen = ({ history, location }) => {
     const cart = useSelector(state => state.cart);
     const { shippingAddress } = cart;
 
@@ -23,6 +25,8 @@ const ShippingScreen = ({ history }) => {
     }
 
     return (
+        <div>
+           <CheckOutProgress currentStep={location}/>
         <FormContainer>
          <h2>Shipping</h2>
          <Form onSubmit={submitHandler}>
@@ -61,6 +65,8 @@ const ShippingScreen = ({ history }) => {
          <Button type="submit">Continue</Button>
          </Form>
         </FormContainer>
+        </div>
+      
     )
 }
 

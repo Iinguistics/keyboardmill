@@ -53,21 +53,17 @@ const ProfileScreen = ({ location, history }) => {
             setPasswordError(true);
         }else{
           dispatch(updateUserDetails({ id: user._id, name, email, password }));
-         // reLoad();
          }
         }
        
 
-        const reLoad = ()=>{
-            setTimeout(()=>{
-            history.go()
-            }, 2000)
-        }
+    
 
        
 
 
-    return <Row className="my-5">
+    return (
+         <Row className="my-5">
         <Col md={3}>
         <h3>Update Profile</h3>
             {success && <Message variant="success">Profile Updated</Message>}
@@ -113,7 +109,8 @@ const ProfileScreen = ({ location, history }) => {
             <h2>My Orders</h2>
         </Col>
     </Row>
-        
+      
+    )     
     
 }
 
