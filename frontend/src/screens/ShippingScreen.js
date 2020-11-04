@@ -25,9 +25,8 @@ const ShippingScreen = ({ history, location }) => {
     }
 
     return (
-        <div>
-           <CheckOutProgress currentStep={location}/>
         <FormContainer>
+             <CheckOutProgress step1 step2/>
          <h2>Shipping</h2>
          <Form onSubmit={submitHandler}>
             
@@ -65,8 +64,6 @@ const ShippingScreen = ({ history, location }) => {
          <Button type="submit">Continue</Button>
          </Form>
         </FormContainer>
-        </div>
-      
     )
 }
 
