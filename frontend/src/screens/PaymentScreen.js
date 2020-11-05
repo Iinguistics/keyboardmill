@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import FormContainer from '../components/FormContainer';
-//import { savePaymentMethod } from '../actions/cartActions';
+import { savePaymentMethod } from '../actions/cartActions';
 import CheckOutProgress from '../components/CheckOutProgress';
 
 
@@ -22,14 +22,14 @@ const PaymentScreen = ({ history, location }) => {
 
     const submitHandler = (e) =>{
         e.preventDefault();
-        //dispatch(savePaymentMethod(paymentMethod));
+        dispatch(savePaymentMethod(paymentMethod));
         history.push('/placeorder');
     }
 
     return (
         <FormContainer>
-             <CheckOutProgress step1 step2 step3/>
-         <h2>Shipping</h2>
+             <CheckOutProgress step1 step2 step3 />
+         <h2>Payment</h2>
          <Form onSubmit={submitHandler}>
             <Form.Group>
                 <Form.Label as="legend">Select Payment Method</Form.Label>

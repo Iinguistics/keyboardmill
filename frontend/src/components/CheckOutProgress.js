@@ -3,10 +3,12 @@ import { Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 
-const checkOutProgress = ({step1, step2, step3, step4}) => {
+const checkOutProgress = ({step1, step2, step3, step4, progress}) => {
+
+
 
     return (
-        <Nav className='justify-content-center mb-4 my-5'>
+         <Nav className='justify-content-center my-5'>
             <Nav.Item>
               {step1 ? (
                   <LinkContainer to='/login' className='check-out'>
@@ -48,6 +50,9 @@ const checkOutProgress = ({step1, step2, step3, step4}) => {
               )}
             </Nav.Item>
         </Nav>
+      
+     
+       
     )
 }
 
