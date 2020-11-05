@@ -52,3 +52,6 @@ export const removeFromCart = (id) => async(dispatch, getState)=>{
     localStorage.setItem('paymentMethod', JSON.stringify(data))
  }
 
+
+ 
+
