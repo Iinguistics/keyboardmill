@@ -5,13 +5,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createOrder } from '../actions/orderActions';
 import CheckOutProgress from '../components/CheckOutProgress';
 import Message from '../components/bootstrapHelpers/Message';
+import Loader from '../components/bootstrapHelpers/Loader';
+
 
 const PlaceOrderScreen = ({ history }) => {
     const cart = useSelector(state => state.cart);
     
     // once create order action is dispatched order,success or error will be added to the state
     const orderCreate = useSelector(state => state.orderCreate);
-    const { order, success, error } = orderCreate;
+    const { order, success, error, loading } = orderCreate;
 
     const dispatch = useDispatch();
 
@@ -50,6 +52,7 @@ const PlaceOrderScreen = ({ history }) => {
     return (
          <div className="my-5">
            <CheckOutProgress step1 step2 step3 step4 />
+           {loading && <Loader />}
            <Row>
                <Col md={8}>
                  <ListGroup variant="flush">
