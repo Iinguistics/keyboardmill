@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap';
@@ -42,14 +42,14 @@ const CartScreen = ({ match, location, history }) => {
     }
     itemQtyToInt();
       
-    const renderSubTotal = ()=>{
-            const reducer = (accumulator, currentValue) => accumulator + currentValue;
-            return totalItems.reduce(reducer) 
-    }
-    const renderTotalPrice = ()=>{
-        const reducer = (accumulator, currentValue) => accumulator + currentValue;
-        return totalPrice.reduce(reducer) 
-    }
+    // const renderSubTotal = ()=>{
+    //         const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    //         return totalItems.reduce(reducer) 
+    // }
+    // const renderTotalPrice = ()=>{
+    //     const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    //     return totalPrice.reduce(reducer) 
+    // }
 
 
     const checkoutHandler = ()=>{

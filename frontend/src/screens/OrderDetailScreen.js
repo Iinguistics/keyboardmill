@@ -26,8 +26,9 @@ const OrderDetailScreen = ({ match }) => {
 
     // add order.orderItems.length if this is empty push somewhere
     useEffect(()=>{
+        if(!order || match.params.id !== order._id)
         dispatch(orderDetails(match.params.id));
-    }, [])
+    }, [order, match.params.id ])
 
     
    

@@ -31,7 +31,7 @@ export const fetchProduct = (id) => async(dispatch)=>{
     }catch (error){
         console.log(error.response.data)
         dispatch({
-            type: PRODUCT_LIST_FAIL,
+            type: PRODUCT_FAIL,
             payload: error.response && error.response.data.message ? error.response.data.message : error.message
         })
     }
