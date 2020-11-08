@@ -35,9 +35,9 @@ const OrderDetailScreen = ({ match }) => {
 
     return loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : (
       <div className="my-5">
-       <h1>Your order ID: {order._id}</h1>
-       <h3>Name: {order.user.name}</h3>
-       <h3>Email: {order.user.email}</h3>
+       <h3>Your order ID: {order._id}</h3>
+       <h4>Name: {order.user.name}</h4>
+       <h4>Email: {order.user.email}</h4>
        <Row>
                <Col md={8}>
                  <ListGroup variant="flush">
