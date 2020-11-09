@@ -12,10 +12,11 @@ const ShippingScreen = ({ history, location }) => {
 
     const dispatch = useDispatch();
 
-    const [address, setAddress] = useState(shippingAddress.address);
-    const [city, setCity] = useState(shippingAddress.city);
-    const [zipcode, setZipcode] = useState(shippingAddress.zipcode);
-    const [country, setCountry] = useState(shippingAddress.country);
+    // using || to remove uncontrolled input to a controlled input..if local storage is empty a empty obj is returned
+    const [address, setAddress] = useState(shippingAddress.address || "");
+    const [city, setCity] = useState(shippingAddress.city || "");
+    const [zipcode, setZipcode] = useState(shippingAddress.zipcode || "");
+    const [country, setCountry] = useState(shippingAddress.country || "");
 
 
     const submitHandler = (e) =>{
