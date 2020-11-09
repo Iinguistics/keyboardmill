@@ -104,4 +104,20 @@ const registerUser = asyncHandler(async(req,res)=>{
 });
 
 
-module.exports = { authUser, getUserProfile, registerUser, updateUserProfile }
+// GET all users 
+//@route  GET api/users/profile
+//@access Private/Admin
+const getAllUsers = asyncHandler(async(req,res)=>{
+    const users = await User.find({})
+
+    if(users){
+    res.json(users);
+
+    }else{
+        res.status(404)
+        throw new Error('Users not found');
+    }
+});
+
+
+module.exports = { authUser, getUserProfile, registerUser, updateUserProfile, getAllUsers }
