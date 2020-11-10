@@ -11,7 +11,8 @@ import { logout } from '../actions/userActions';
 
 
     const logoutHandler = ()=>{
-       dispatch(logout())
+       dispatch(logout());
+      
     }
 
 
@@ -45,7 +46,7 @@ import { logout } from '../actions/userActions';
            <NavDropdown.Item>Profile</NavDropdown.Item>
          </LinkContainer>
          {adminView()}
-         <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
+         <NavDropdown.Item onClick={()=> logoutHandler()}>Logout</NavDropdown.Item>
         </NavDropdown>
         )
       }else{

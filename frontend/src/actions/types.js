@@ -46,6 +46,13 @@ export const USER_LIST_REQUEST = 'USER_LIST_REQUEST';
 export const USER_LIST_SUCCESS = 'USER_LIST_SUCCESS';
 export const USER_LIST_FAIL = 'USER_LIST_FAIL';
 
+
+//Delete User  admin use only
+export const USER_REMOVE_REQUEST = 'USER_REMOVE_REQUEST';
+export const USER_REMOVE_SUCCESS = 'USER_REMOVE_SUCCESS';
+export const USER_REMOVE_FAIL = 'USER_REMOVE_FAIL';
+
+
 //create order
 export const ORDER_CREATE_REQUEST = 'ORDER_CREATE_REQUEST';
 export const ORDER_CREATE_SUCCESS = 'ORDER_CREATE_SUCCESS';

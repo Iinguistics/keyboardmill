@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsers } from '../actions/userActions';
+import { getAllUsers, removeUser } from '../actions/userActions';
 import Loader from '../components/bootstrapHelpers/Loader';
 import Message from '../components/bootstrapHelpers/Message';
 
@@ -26,8 +26,11 @@ const UserListScreen = ({ history }) => {
     }, [dispatch, history, userInfo]);
 
 
-    const deleteHandler = (id)=>{
-        console.log('whatever')
+    const deleteHandler = (id, userName)=>{
+        if(window.confirm(`Confirm you want to delete ${userName}`)){
+            dispatch(removeUser(id));
+            dispatch(getAllUsers());
+        }
     }
 
 
@@ -63,7 +66,7 @@ const UserListScreen = ({ history }) => {
                                          <i className="fas fa-edit"></i>
                                      </Button>
                                  </LinkContainer>
-                                 <Button variant="danger" className="btn-sm" onClick={()=> deleteHandler(user._id)}>
+                                 <Button variant="danger" className="btn-sm" onClick={()=> deleteHandler(user._id, user.name)}>
                                     <i className="fas fa-trash"></i>
                                  </Button>
                              </td>
