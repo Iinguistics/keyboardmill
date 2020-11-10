@@ -8,17 +8,22 @@ import Message from '../components/bootstrapHelpers/Message';
 
 
 
-const UserListScreen = () => {
+const UserListScreen = ({ history }) => {
     const dispatch = useDispatch();
+
+    const userLogin = useSelector(state => state.userLogin);
+    const{ userInfo } = userLogin;
+
     const allUsers = useSelector(state => state.allUsers);
     const { users, loading, error } = allUsers;
 
 
     useEffect(()=>{
-        if(users.length === 0){
-            dispatch(getAllUsers())
+        if(!userInfo || !userInfo.isAdmin){
+            history.push('/');
         }
-    }, []);
+       dispatch(getAllUsers());
+    }, [dispatch, history, userInfo]);
 
 
     const deleteHandler = (id)=>{
