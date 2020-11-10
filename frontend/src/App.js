@@ -14,13 +14,12 @@ import ShippingScreen from './screens/ShippingScreen';
 import PaymentScreen from './screens/PaymentScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderDetailScreen from './screens/OrderDetailScreen';
+import UserListScreen from './screens/UserListScreen';
 
 
 
 
   const App = ()=>{
-
-
 
   return(
     <Router>
@@ -38,7 +37,7 @@ import OrderDetailScreen from './screens/OrderDetailScreen';
         <Route path= "/payment"  component={PaymentScreen} />
         <Route path= "/placeorder" component={PlaceOrderScreen} />
         <Route path= "/order/:id" component={OrderDetailScreen} />
-
+        <Route path= "/admin/userlist" component={UserListScreen} />
         </ToastProvider>
         </Container>
       </main>

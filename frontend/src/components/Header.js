@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -14,6 +14,27 @@ import { logout } from '../actions/userActions';
        dispatch(logout())
     }
 
+
+    const adminView = ()=>{
+      if(userInfo.isAdmin){
+        return(
+          <Fragment>
+           <LinkContainer to="/admin/userlist">
+          <NavDropdown.Item>View Users</NavDropdown.Item>
+          </LinkContainer>
+
+           <LinkContainer to="/admin/productlist">
+           <NavDropdown.Item>Products</NavDropdown.Item>
+           </LinkContainer>
+
+           <LinkContainer to="/admin/orderlist">
+           <NavDropdown.Item>Orders</NavDropdown.Item>
+           </LinkContainer>
+          </Fragment>
+        )
+      }
+    }
+
    
 
     const renderUserInfo = ()=>{
@@ -23,6 +44,7 @@ import { logout } from '../actions/userActions';
          <LinkContainer to="/profile">
            <NavDropdown.Item>Profile</NavDropdown.Item>
          </LinkContainer>
+         {adminView()}
          <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
         </NavDropdown>
         )

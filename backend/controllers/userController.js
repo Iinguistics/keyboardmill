@@ -105,7 +105,7 @@ const registerUser = asyncHandler(async(req,res)=>{
 
 
 // GET all users 
-//@route  GET api/users/profile
+//@route  GET api/users
 //@access Private/Admin
 const getAllUsers = asyncHandler(async(req,res)=>{
     const users = await User.find({})
