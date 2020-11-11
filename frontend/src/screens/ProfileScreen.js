@@ -47,7 +47,6 @@ const ProfileScreen = ({ location, history }) => {
 
     }, [userInfo, history, dispatch, user, success ])
 
-       console.log(orders)
 
     const renderPasswordError = ()=>{
         if(passwordError){

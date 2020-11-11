@@ -141,7 +141,7 @@ const deleteUser = asyncHandler(async(req,res)=>{
 //@route  GET api/users/profile/edit/:id
 //@access Private/Adim
 const getUserProfileEdit = asyncHandler(async(req,res)=>{
-    const user = await (await User.findById(req.params.id)).select('-password')
+    const user = await User.findById(req.params.id).select('-password')
 
     if(user){
     res.json(user)
@@ -161,7 +161,7 @@ const editUserProfile = asyncHandler(async(req,res)=>{
     if(user){
     user.name = req.body.name || user.name
     user.email = req.body.email || user.email
-
+    user.isAdmin = req.body.isAdmin
     const updatedUser = await user.save();
  
     res.json({
