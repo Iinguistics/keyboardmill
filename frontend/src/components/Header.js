@@ -70,7 +70,7 @@ import { logout } from '../actions/userActions';
                <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
                       <LinkContainer to="/cart">
-                      <Nav.Link><i className="fas fa-shopping-cart"></i>Cart</Nav.Link>
+                      <Nav.Link><i className="fas fa-shopping-bag"></i>Bag</Nav.Link>
                       </LinkContainer>
                       {renderUserInfo()}
                     </Nav>
