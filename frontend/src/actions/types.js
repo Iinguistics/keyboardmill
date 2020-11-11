@@ -47,6 +47,12 @@ export const USER_LIST_SUCCESS = 'USER_LIST_SUCCESS';
 export const USER_LIST_FAIL = 'USER_LIST_FAIL';
 
 
+//User Edit  admin use only
+export const USER_EDIT_REQUEST = 'USER_EDIT_REQUEST';
+export const USER_EDIT_SUCCESS = 'USER_EDIT_SUCCESS';
+export const USER_EDIT_FAIL = 'USER_EDIT_FAIL';
+
+
 //Delete User  admin use only
 export const USER_REMOVE_REQUEST = 'USER_REMOVE_REQUEST';
 export const USER_REMOVE_SUCCESS = 'USER_REMOVE_SUCCESS';

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers, removeUser } from '../actions/userActions';
 import Loader from '../components/bootstrapHelpers/Loader';
 import Message from '../components/bootstrapHelpers/Message';
-
+import { useToasts } from 'react-toast-notifications';
 
 
 const UserListScreen = ({ history }) => {
@@ -17,7 +17,12 @@ const UserListScreen = ({ history }) => {
     const allUsers = useSelector(state => state.allUsers);
     const { users, loading, error } = allUsers;
 
+    const removedUser = useSelector(state => state.removedUser);
+    const { error:removedUserError } = removedUser;
 
+    const { addToast } = useToasts();
+
+    
     useEffect(()=>{
         if(!userInfo || !userInfo.isAdmin){
             history.push('/');
@@ -30,6 +35,11 @@ const UserListScreen = ({ history }) => {
         if(window.confirm(`Confirm you want to delete ${userName}`)){
             dispatch(removeUser(id));
             dispatch(getAllUsers());
+            if(!removedUserError){
+            addToast(`${userName} has been deleted`, {
+                appearance: 'success'
+            });
+            }
         }
     }
 
@@ -61,7 +71,7 @@ const UserListScreen = ({ history }) => {
                                  }
                              </td>
                              <td className="p-1">
-                                 <LinkContainer to={`/user/${user._id}/edit`}>
+                                 <LinkContainer to={`/admin/user/edit/${user._id}`}>
                                      <Button className="btn-sm mr-4">
                                          <i className="fas fa-edit"></i>
                                      </Button>

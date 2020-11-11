@@ -15,7 +15,7 @@ import PaymentScreen from './screens/PaymentScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderDetailScreen from './screens/OrderDetailScreen';
 import UserListScreen from './screens/UserListScreen';
-
+import UserEditScreen from './screens/UserEditScreen';
 
 
 
@@ -26,7 +26,7 @@ import UserListScreen from './screens/UserListScreen';
       <Header />
       <main className="py-3">
         <Container>
-        <ToastProvider autoDismiss={true} autoDismissTimeout={3500} placement='bottom-right' >
+        <ToastProvider autoDismiss={true} autoDismissTimeout={3500} placement='bottom-center' >
         <Route path="/" exact component={HomeScreen} />
         <Route path="/product/:id"  component={ProductScreen} />
         <Route path= "/cart/:id?"  component={CartScreen} />
@@ -38,6 +38,7 @@ import UserListScreen from './screens/UserListScreen';
         <Route path= "/placeorder" component={PlaceOrderScreen} />
         <Route path= "/order/:id" component={OrderDetailScreen} />
         <Route path= "/admin/userlist" component={UserListScreen} />
+        <Route path= "/admin/user/edit/:id" component={UserEditScreen} />
         </ToastProvider>
         </Container>
       </main>
