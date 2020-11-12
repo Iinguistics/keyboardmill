@@ -3,15 +3,16 @@ import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserEdit } from '../actions/userActions';
-import { listMyOrders } from '../actions/orderActions';
+import { getUserEdit, editUserDetails } from '../actions/userActions';
 import Loader from '../components/bootstrapHelpers/Loader';
 import Message from '../components/bootstrapHelpers/Message';
-import { USER_UPDATE_RESET } from '../actions/types';
 import FormContainer from '../components/FormContainer';
+import { useToasts } from 'react-toast-notifications';
 
 
 const UserEditScreen = ({ match, history }) => {
+    const dispatch = useDispatch();
+
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [isAdmin, setIsAdmin] = useState(false);
@@ -19,9 +20,15 @@ const UserEditScreen = ({ match, history }) => {
     const userLogin = useSelector(state => state.userLogin);
     const{ userInfo } = userLogin;
 
-    const dispatch = useDispatch();
+    const userFetch = useSelector(state => state.userFetch);
+    const { loading:getUserLoading, error:getUserError, user } = userFetch;
+
+
     const userEdit = useSelector(state => state.userEdit);
-    const { loading:getUserLoading, error:getUserError, user } = userEdit;
+    const { success:editSuccess, error:editError } = userEdit;
+
+
+    const { addToast } = useToasts();
 
 
     useEffect(()=>{
@@ -40,7 +47,17 @@ const UserEditScreen = ({ match, history }) => {
 
     const submitHandler = (e)=>{
         e.preventDefault();
-        
+        if(user){
+            dispatch(editUserDetails(match.params.id, { name, email, isAdmin }));
+            dispatch(getUserEdit(match.params.id));
+            setTimeout(()=>{
+                if(!editError){
+                    addToast(`${user.name} has been updated`, {
+                        appearance: 'success'
+                    });
+                    }
+            }, 1000)
+        }
     }
 
 
@@ -54,6 +71,7 @@ const UserEditScreen = ({ match, history }) => {
 
             <FormContainer>
             <h1>Edit User</h1>
+            {editError && <Message variant="danger">{editError}</Message> }
             {getUserLoading ? <Loader /> : getUserError ? <Message variant="danger">{getUserError}</Message> : ( 
             <Form onSubmit={submitHandler}>
 
