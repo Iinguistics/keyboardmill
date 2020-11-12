@@ -1,15 +1,16 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { productListReducer, productReducer } from './reducers/productReducers';
+import { productListReducer, productReducer, removeProductReducer } from './reducers/productReducers';
 import { cartReducer } from './reducers/cartReducers';
-import { userLoginReducer, userRegisterReducer, userDetailsReducer, updateDetailsReducer, getUsersReducer, removeUserReducer, userEditReducer } from './reducers/userReducers';
+import { userLoginReducer, userRegisterReducer, userDetailsReducer, updateDetailsReducer, getUsersReducer, removeUserReducer, userFetchReducer, editUserReducer } from './reducers/userReducers';
 import { orderCreateReducer, orderDetailsReducer, orderPayReducer, orderListMyReducer } from './reducers/orderReducers';
 
 
 const reducers = combineReducers({
    productList: productListReducer,
    singleProduct: productReducer,
+   removeProduct: removeProductReducer,
    cart: cartReducer,
    userLogin: userLoginReducer,
    userRegister: userRegisterReducer,
@@ -17,7 +18,8 @@ const reducers = combineReducers({
    userProfileUpdate: updateDetailsReducer,
    allUsers: getUsersReducer,
    removedUser: removeUserReducer,
-   userEdit: userEditReducer,
+   userFetch: userFetchReducer,
+   userEdit: editUserReducer,
    orderCreate: orderCreateReducer,
    orderDetails: orderDetailsReducer,
    orderPay: orderPayReducer,

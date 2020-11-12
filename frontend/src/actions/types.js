@@ -1,11 +1,23 @@
-// Product types fetch all products
+// Product types fetch all products Public
 export const PRODUCT_LIST_REQUEST = 'PRODUCT_LIST_REQUEST';
 export const PRODUCT_LIST_SUCCESS = 'PRODUCT_LIST_SUCCESS';
 export const PRODUCT_LIST_FAIL = 'PRODUCT_LIST_FAIL';
-// fetch single product
+
+// Product types fetch all products  Private/Admin
+export const PRODUCT_LIST_ADMIN_REQUEST = 'PRODUCT_LIST_ADMIN_REQUEST';
+export const PRODUCT_LIST_ADMIN_SUCCESS = 'PRODUCT_LIST_ADMIN_SUCCESS';
+export const PRODUCT_LIST_ADMIN_FAIL = 'PRODUCT_LIST_ADMIN_FAIL';
+
+// fetch single product  Public
 export const PRODUCT_REQUEST = 'PRODUCT_REQUEST';
 export const PRODUCT_SUCCESS = 'PRODUCT_SUCCESS';
 export const PRODUCT_FAIL = 'PRODUCT_FAIL';
+
+
+//Delete Product  admin use only
+export const PRODUCT_REMOVE_REQUEST = 'PRODUCT_REMOVE_REQUEST';
+export const PRODUCT_REMOVE_SUCCESS = 'PRODUCT_REMOVE_SUCCESS';
+export const PRODUCT_REMOVE_FAIL = 'PRODUCT_REMOVE_FAIL';
 
 
 //Cart
@@ -47,7 +59,13 @@ export const USER_LIST_SUCCESS = 'USER_LIST_SUCCESS';
 export const USER_LIST_FAIL = 'USER_LIST_FAIL';
 
 
-//User Edit  admin use only
+//User fetch the user to edit admin use only
+export const USER_FETCH_REQUEST = 'USER_FETCH_REQUEST';
+export const USER_FETCH_SUCCESS = 'USER_FETCH_SUCCESS';
+export const USER_FETCH_FAIL = 'USER_FETCH_FAIL';
+
+
+//User Edit user/PUT req  admin use only
 export const USER_EDIT_REQUEST = 'USER_EDIT_REQUEST';
 export const USER_EDIT_SUCCESS = 'USER_EDIT_SUCCESS';
 export const USER_EDIT_FAIL = 'USER_EDIT_FAIL';
