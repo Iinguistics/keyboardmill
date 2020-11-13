@@ -34,18 +34,20 @@ const ProductListScreen = ({ history, match }) => {
     const deleteHandler = (id, productName)=>{
         if(window.confirm(`Confirm you want to delete ${productName}`)){
             dispatch(removeProduct(id));
-            dispatch(listProducts());
-            if(!removedUserError){
-            addToast(`${productName} has been deleted`, {
-                appearance: 'success'
-            });
-            }
+            setTimeout(()=>{
+                dispatch(listProducts());
+                if(!removedUserError){
+                addToast(`${productName} has been deleted`, {
+                    appearance: 'success'
+                });
+                }
+            },1000) 
         } 
     }
 
-
+   // to do
     const createProductHandler = ()=>{
-        console.log('sat')
+        console.log('need to do')
     }
 
 
@@ -58,7 +60,7 @@ const ProductListScreen = ({ history, match }) => {
                <h1>Products</h1>
               </Col>
               <Col className="text-right">
-                  <Button className="my-3" onClick={()=> createProductHandler()}>
+                  <Button className="my-3" variant="primary" onClick={()=> createProductHandler()}>
                       <i className="fas fa-plus"></i> Create Product
                   </Button>
               </Col>
@@ -81,7 +83,7 @@ const ProductListScreen = ({ history, match }) => {
                              <td>{product._id}</td>
                              <td>{product.name}</td>
                              <td>${product.price}</td>
-                             <td>${product.category}</td>                            
+                             <td>{product.category}</td>                            
                              <td>{product.brand}</td>
                              <td className="p-1">
                                  <LinkContainer to={`/admin/product/edit/${product._id}`}>

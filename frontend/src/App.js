@@ -17,6 +17,7 @@ import OrderDetailScreen from './screens/OrderDetailScreen';
 import UserListScreen from './screens/UserListScreen';
 import UserEditScreen from './screens/UserEditScreen';
 import ProductListScreen from './screens/ProductListScreen';
+import ProductEditScreen from './screens/ProductEditScreen';
 
 
   const App = ()=>{
@@ -40,6 +41,7 @@ import ProductListScreen from './screens/ProductListScreen';
         <Route path= "/admin/userlist" component={UserListScreen} />
         <Route path= "/admin/user/edit/:id" component={UserEditScreen} />
         <Route path= "/admin/productlist" component={ProductListScreen} />
+        <Route path= "/admin/product/edit/:id" component={ProductEditScreen} />
         </ToastProvider>
         </Container>
       </main>

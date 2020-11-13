@@ -4,7 +4,6 @@ import { Row, Col, Image, Card, Button, ListGroup, Form } from 'react-bootstrap'
 import Rating from '../components/Rating';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProduct } from '../actions/productActions';
-import { addToCart } from '../actions/cartActions';
 import Loader from '../components/bootstrapHelpers/Loader';
 import Message from '../components/bootstrapHelpers/Message';
 
