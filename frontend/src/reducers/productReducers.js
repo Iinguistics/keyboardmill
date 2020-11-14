@@ -1,4 +1,4 @@
-import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_REQUEST, PRODUCT_SUCCESS, PRODUCT_FAIL, PRODUCT_REMOVE_REQUEST, PRODUCT_REMOVE_SUCCESS, PRODUCT_REMOVE_FAIL  } from '../actions/types';
+import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_REQUEST, PRODUCT_SUCCESS, PRODUCT_FAIL, PRODUCT_REMOVE_REQUEST, PRODUCT_REMOVE_SUCCESS, PRODUCT_REMOVE_FAIL, PRODUCT_EDIT_REQUEST, PRODUCT_EDIT_SUCCESS, PRODUCT_EDIT_FAIL } from '../actions/types';
 
 export const productListReducer = (state={ products:[] }, action)=>{
   switch(action.type){
@@ -40,6 +40,22 @@ export const removeProductReducer = (state={ removedProduct: {} }, action)=>{
         case PRODUCT_REMOVE_FAIL:
             return { loading: false, error: action.payload }
     
+            default:
+              return state;
+    }
+}
+
+
+// For admin to edit existing product..Private/Admin
+export const productEditReducer = (state= { success: false }, action)=>{
+    switch(action.type){
+        case PRODUCT_EDIT_REQUEST :
+            return {...state, loading: true }
+        case PRODUCT_EDIT_SUCCESS:
+            return { loading: false, success: true }
+        case PRODUCT_EDIT_FAIL:
+            return { loading: false, error: action.payload }
+            
             default:
               return state;
     }

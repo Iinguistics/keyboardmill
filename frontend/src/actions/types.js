@@ -3,15 +3,18 @@ export const PRODUCT_LIST_REQUEST = 'PRODUCT_LIST_REQUEST';
 export const PRODUCT_LIST_SUCCESS = 'PRODUCT_LIST_SUCCESS';
 export const PRODUCT_LIST_FAIL = 'PRODUCT_LIST_FAIL';
 
-// Product types fetch all products  Private/Admin
-export const PRODUCT_LIST_ADMIN_REQUEST = 'PRODUCT_LIST_ADMIN_REQUEST';
-export const PRODUCT_LIST_ADMIN_SUCCESS = 'PRODUCT_LIST_ADMIN_SUCCESS';
-export const PRODUCT_LIST_ADMIN_FAIL = 'PRODUCT_LIST_ADMIN_FAIL';
+
 
 // fetch single product  Public
 export const PRODUCT_REQUEST = 'PRODUCT_REQUEST';
 export const PRODUCT_SUCCESS = 'PRODUCT_SUCCESS';
 export const PRODUCT_FAIL = 'PRODUCT_FAIL';
+
+
+//Edit Product  admin use only
+export const PRODUCT_EDIT_REQUEST = 'PRODUCT_EDIT_REQUEST';
+export const PRODUCT_EDIT_SUCCESS = 'PRODUCT_EDIT_SUCCESS';
+export const PRODUCT_EDIT_FAIL = 'PRODUCT_EDIT_FAIL';
 
 
 //Delete Product  admin use only
