@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { listProducts, removeProduct } from '../actions/productActions';
+import { listProducts, removeProduct, createProduct } from '../actions/productActions';
 import Loader from '../components/bootstrapHelpers/Loader';
 import Message from '../components/bootstrapHelpers/Message';
 import { useToasts } from 'react-toast-notifications';
 
 
-const ProductListScreen = ({ history, match }) => {
+const ProductListScreen = ({ history }) => {
     const dispatch = useDispatch();
 
     const userLogin = useSelector(state => state.userLogin);
@@ -17,8 +17,11 @@ const ProductListScreen = ({ history, match }) => {
     const productList = useSelector(state => state.productList);
     const { products, loading, error } = productList;
     
-    const removedUser = useSelector(state => state.removedUser);
-    const { error:removedUserError } = removedUser;
+    const removedProduct = useSelector(state => state.removedUser);
+    const { error:removedProductError } = removedProduct;
+
+    const createProductState = useSelector(state => state.createProduct);
+    const { error:createProductError, success, } = createProductState;
 
     const { addToast } = useToasts();
 
@@ -36,7 +39,7 @@ const ProductListScreen = ({ history, match }) => {
             dispatch(removeProduct(id));
             setTimeout(()=>{
                 dispatch(listProducts());
-                if(!removedUserError){
+                if(!removedProductError){
                 addToast(`${productName} has been deleted`, {
                     appearance: 'success'
                 });
@@ -45,9 +48,9 @@ const ProductListScreen = ({ history, match }) => {
         } 
     }
 
-   // to do
+
     const createProductHandler = ()=>{
-        console.log('need to do')
+        dispatch(createProduct());
     }
 
 
@@ -65,7 +68,7 @@ const ProductListScreen = ({ history, match }) => {
                   </Button>
               </Col>
             </Row>
-            {removedUserError && <Message variant="danger">{removedUserError}</Message>}
+            {removedProductError && <Message variant="danger">{removedProductError}</Message>}
             {loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : (
                 <Table striped bordered hover responsive className="table-sm">
                     <thead>

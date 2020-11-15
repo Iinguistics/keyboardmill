@@ -62,6 +62,22 @@ export const productEditReducer = (state= { success: false }, action)=>{
 }
 
 
+ // For admin to add a product..Private/Admin
+ export const productCreateReducer = (state= { success: false }, action)=>{
+    switch(action.type){
+        case PRODUCT_EDIT_REQUEST :
+            return {...state, loading: true }
+        case PRODUCT_EDIT_SUCCESS:
+            return { loading: false, success: true }
+        case PRODUCT_EDIT_FAIL:
+            return { loading: false, error: action.payload }
+            
+            default:
+              return state;
+    }
+}
+
+
 
 
 

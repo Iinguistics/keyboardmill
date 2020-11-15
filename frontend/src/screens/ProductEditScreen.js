@@ -28,8 +28,8 @@ const ProductEditScreen = ({ match, history }) => {
     const singleProduct = useSelector(state => state.singleProduct);
     const { getProductLoading, getProductError, product } = singleProduct;
 
-    const editProduct = useSelector(state => state.editProduct);
-    const { error:editProductError, success } = editProduct;
+    const editProductState = useSelector(state => state.editProduct);
+    const { error:editProductError, success, loading } = editProductState;
 
 
     const { addToast } = useToasts();
@@ -59,14 +59,17 @@ const ProductEditScreen = ({ match, history }) => {
         e.preventDefault();
         if(product){
             dispatch(editProduct(match.params.id, { name, price, description, countInStock, brand, category, numReviews, image }));
-            dispatch(fetchProduct(match.params.id));
             setTimeout(()=>{
-                if(!editProductError && success){
+                dispatch(fetchProduct(match.params.id)); 
+            }, 1000)
+            setTimeout(()=>{
+                if(!editProductError){
                     addToast(`${product.name} has been updated`, {
                         appearance: 'success'
                     });
+                    history.push('/admin/productlist');
                     }
-            }, 1000)
+            }, 2000)
         }
     }
             
@@ -81,6 +84,7 @@ const ProductEditScreen = ({ match, history }) => {
             {editProductError && <Message variant="danger">{editProductError}</Message> }
             <FormContainer>
             <h1>Edit Product</h1>
+            {loading && <Loader />}
             {getProductLoading ? <Loader /> : getProductError ? <Message variant="danger">{getProductError}</Message> : ( 
             <Form onSubmit={submitHandler}>
 
