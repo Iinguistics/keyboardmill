@@ -1,4 +1,4 @@
-import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_REQUEST, PRODUCT_SUCCESS, PRODUCT_FAIL, PRODUCT_REMOVE_REQUEST, PRODUCT_REMOVE_SUCCESS, PRODUCT_REMOVE_FAIL, PRODUCT_EDIT_REQUEST, PRODUCT_EDIT_SUCCESS, PRODUCT_EDIT_FAIL } from '../actions/types';
+import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_REQUEST, PRODUCT_SUCCESS, PRODUCT_FAIL, PRODUCT_REMOVE_REQUEST, PRODUCT_REMOVE_SUCCESS, PRODUCT_REMOVE_FAIL, PRODUCT_EDIT_REQUEST, PRODUCT_EDIT_SUCCESS, PRODUCT_EDIT_FAIL, PRODUCT_EDIT_RESET, PRODUCT_CREATE_REQUEST, PRODUCT_CREATE_SUCCESS, PRODUCT_CREATE_FAIL, PRODUCT_CREATE_RESET } from '../actions/types';
 
 export const productListReducer = (state={ products:[] }, action)=>{
   switch(action.type){
@@ -47,15 +47,16 @@ export const removeProductReducer = (state={ removedProduct: {} }, action)=>{
 
 
 // For admin to edit existing product..Private/Admin
-export const productEditReducer = (state= { success: false }, action)=>{
+export const productEditReducer = (state= { product: {} }, action)=>{
     switch(action.type){
         case PRODUCT_EDIT_REQUEST :
             return {...state, loading: true }
         case PRODUCT_EDIT_SUCCESS:
-            return { loading: false, success: true }
+            return { loading: false, success: true, product: action.payload }
         case PRODUCT_EDIT_FAIL:
             return { loading: false, error: action.payload }
-            
+        case PRODUCT_EDIT_RESET:
+            return { product: {} }    
             default:
               return state;
     }
@@ -63,14 +64,16 @@ export const productEditReducer = (state= { success: false }, action)=>{
 
 
  // For admin to add a product..Private/Admin
- export const productCreateReducer = (state= { success: false }, action)=>{
+ export const productCreateReducer = (state= {}, action)=>{
     switch(action.type){
-        case PRODUCT_EDIT_REQUEST :
+        case PRODUCT_CREATE_REQUEST :
             return {...state, loading: true }
-        case PRODUCT_EDIT_SUCCESS:
-            return { loading: false, success: true }
-        case PRODUCT_EDIT_FAIL:
+        case PRODUCT_CREATE_SUCCESS:
+            return { loading: false, success: true, product: action.payload }
+        case PRODUCT_CREATE_FAIL:
             return { loading: false, error: action.payload }
+        case PRODUCT_CREATE_RESET:
+            return {}
             
             default:
               return state;

@@ -6,6 +6,7 @@ import { listProducts, removeProduct, createProduct } from '../actions/productAc
 import Loader from '../components/bootstrapHelpers/Loader';
 import Message from '../components/bootstrapHelpers/Message';
 import { useToasts } from 'react-toast-notifications';
+import { PRODUCT_CREATE_RESET } from '../actions/types';
 
 
 const ProductListScreen = ({ history }) => {
@@ -20,18 +21,23 @@ const ProductListScreen = ({ history }) => {
     const removedProduct = useSelector(state => state.removedUser);
     const { error:removedProductError } = removedProduct;
 
-    const createProductState = useSelector(state => state.createProduct);
-    const { error:createProductError, success, } = createProductState;
+    const createdProductState = useSelector(state => state.createdProduct);
+    const { error:createdProductError, success, product:createdProduct } = createdProductState;
 
     const { addToast } = useToasts();
 
     
     useEffect(()=>{
+        dispatch({ type: PRODUCT_CREATE_RESET });
         if(!userInfo || !userInfo.isAdmin){
             history.push('/');
         }
-       dispatch(listProducts());
-    }, [dispatch, history, userInfo]);
+        if(success){
+            history.push(`/admin/product/edit/${createdProduct._id}`)
+        }else{
+            dispatch(listProducts());
+        }
+    }, [dispatch, history, userInfo, success]);
 
 
     const deleteHandler = (id, productName)=>{
@@ -53,8 +59,7 @@ const ProductListScreen = ({ history }) => {
         dispatch(createProduct());
     }
 
-
-
+    
 
     return (
         <div className="mt-5">
@@ -69,6 +74,7 @@ const ProductListScreen = ({ history }) => {
               </Col>
             </Row>
             {removedProductError && <Message variant="danger">{removedProductError}</Message>}
+            {createdProductError && <Message variant="danger">{createdProductError}</Message>}
             {loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : (
                 <Table striped bordered hover responsive className="table-sm">
                     <thead>

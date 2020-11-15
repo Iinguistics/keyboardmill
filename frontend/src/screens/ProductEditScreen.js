@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProduct, editProduct } from '../actions/productActions';
 import Loader from '../components/bootstrapHelpers/Loader';
@@ -14,13 +13,12 @@ const ProductEditScreen = ({ match, history }) => {
     const dispatch = useDispatch();
 
     const [name, setName] = useState("");
-    const [price, setPrice] = useState("");
+    const [price, setPrice] = useState(0);
     const [image, setImage] = useState("");
     const [brand, setBrand] = useState("");
     const [category, setCategory] = useState("");
-    const [numReviews, setNumReviews] = useState("");
     const [description, setDescription] = useState("");
-    const [countInStock, setCountInStock] = useState("");
+    const [countInStock, setCountInStock] = useState(0);
 
     const userLogin = useSelector(state => state.userLogin);
     const{ userInfo } = userLogin;
@@ -48,7 +46,6 @@ const ProductEditScreen = ({ match, history }) => {
             setCountInStock(product.countInStock)
             setBrand(product.brand)
             setCategory(product.category)
-            setNumReviews(product.numReviews)
             setImage(product.image)
         }
 
@@ -58,7 +55,7 @@ const ProductEditScreen = ({ match, history }) => {
     const submitHandler = (e)=>{
         e.preventDefault();
         if(product){
-            dispatch(editProduct(match.params.id, { name, price, description, countInStock, brand, category, numReviews, image }));
+            dispatch(editProduct(match.params.id, { name, price, description, countInStock, brand, category, image }));
             setTimeout(()=>{
                 dispatch(fetchProduct(match.params.id)); 
             }, 1000)
@@ -137,13 +134,7 @@ const ProductEditScreen = ({ match, history }) => {
                  onChange={(e)=> setCategory(e.target.value)} />
             </Form.Group>
 
-            <Form.Group controlId="numReviews">
-                <Form.Label>Number of Reviews</Form.Label>
-                <Form.Control type="number" placeholder="Number of Reviews"
-                 value={numReviews} 
-                 onChange={(e)=> setNumReviews(e.target.value)} />
-            </Form.Group>
-
+           
 
              <Button variant="primary" type="submit" id="user-update">
                 Update
