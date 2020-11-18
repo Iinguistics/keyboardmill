@@ -1,4 +1,4 @@
-import { ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_CREATE_FAIL, ORDER_DETAILS_REQUEST,  ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS, ORDER_PAY_FAIL, ORDER_PAY_RESET, ORDER_LIST_MY_REQUEST, ORDER_LIST_MY_SUCCESS, ORDER_LIST_MY_FAIL, ORDER_LIST_MY_RESET } from '../actions/types';
+import { ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_CREATE_FAIL, ORDER_DETAILS_REQUEST,  ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS, ORDER_PAY_FAIL, ORDER_PAY_RESET, ORDER_LIST_MY_REQUEST, ORDER_LIST_MY_SUCCESS, ORDER_LIST_MY_FAIL, ORDER_LIST_MY_RESET, ORDER_LIST_REQUEST, ORDER_LIST_SUCCESS, ORDER_LIST_FAIL, ORDER_DELIVERED_REQUEST, ORDER_DELIVERED_SUCCESS, ORDER_DELIVERED_FAIL } from '../actions/types';
 
 
 export const orderCreateReducer = (state = {}, action)=>{
@@ -72,6 +72,7 @@ export const orderPayReducer = (state = { }, action)=>{
 }
 
 
+// for user to view their orders
 export const orderListMyReducer = (state = { orders: [] }, action)=>{
     switch(action.type){
         case ORDER_LIST_MY_REQUEST:
@@ -93,5 +94,38 @@ export const orderListMyReducer = (state = { orders: [] }, action)=>{
 
                 default:
                   return state;
+    }
+}
+
+
+// order list for admin use
+export const orderListReducer = (state={ orders:[] }, action)=>{
+    switch(action.type){
+        case ORDER_LIST_REQUEST :
+            return { loading: true, orders: [] }
+        case ORDER_LIST_SUCCESS:
+            return { loading: false, orders: action.payload }
+        case ORDER_LIST_FAIL:
+            return { loading: false, error: action.payload }
+         
+            default:
+              return state;
+    }
+  }
+
+
+
+  // For admin to update order to delivered..Private/Admin
+export const orderDeliveredReducer = (state= { order: {} }, action)=>{
+    switch(action.type){
+        case ORDER_DELIVERED_REQUEST :
+            return {...state, loading: true }
+        case ORDER_DELIVERED_SUCCESS:
+            return { loading: false, order: action.payload }
+        case ORDER_DELIVERED_FAIL:
+            return { loading: false, error: action.payload }
+        
+            default:
+                return state;
     }
 }

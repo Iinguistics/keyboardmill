@@ -14,6 +14,7 @@ import ShippingScreen from './screens/ShippingScreen';
 import PaymentScreen from './screens/PaymentScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderDetailScreen from './screens/OrderDetailScreen';
+import OrderListScreen from './screens/OrderListScreen';
 import UserListScreen from './screens/UserListScreen';
 import UserEditScreen from './screens/UserEditScreen';
 import ProductListScreen from './screens/ProductListScreen';
@@ -41,6 +42,7 @@ import ProductEditScreen from './screens/ProductEditScreen';
         <Route path= "/admin/userlist" component={UserListScreen} />
         <Route path= "/admin/user/edit/:id" component={UserEditScreen} />
         <Route path= "/admin/productlist" component={ProductListScreen} />
+        <Route path= "/admin/orderlist" component={OrderListScreen} />
         <Route path= "/admin/product/edit/:id" component={ProductEditScreen} />
         </ToastProvider>
         </Container>

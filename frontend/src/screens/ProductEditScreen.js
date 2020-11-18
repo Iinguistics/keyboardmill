@@ -7,7 +7,7 @@ import Loader from '../components/bootstrapHelpers/Loader';
 import Message from '../components/bootstrapHelpers/Message';
 import FormContainer from '../components/FormContainer';
 import { useToasts } from 'react-toast-notifications';
-
+import axios from 'axios';
 
 const ProductEditScreen = ({ match, history }) => {
     const dispatch = useDispatch();
@@ -19,6 +19,7 @@ const ProductEditScreen = ({ match, history }) => {
     const [category, setCategory] = useState("");
     const [description, setDescription] = useState("");
     const [countInStock, setCountInStock] = useState(0);
+    const [uploading, setUploading] = useState(false);
 
     const userLogin = useSelector(state => state.userLogin);
     const{ userInfo } = userLogin;
@@ -69,6 +70,31 @@ const ProductEditScreen = ({ match, history }) => {
             }, 2000)
         }
     }
+
+
+    const uploadFileHandler = async(e) =>{
+      const file = e.target.files[0];
+      const formData = new FormData();
+      formData.append('image', file);
+      setUploading(true);
+
+      try{
+          const config = {
+              headers: {
+                  'Content-Type': 'multipart/form-data'
+              }
+          }
+
+          const { data } = await axios.post('/api/upload', formData, config);
+
+          setImage(data);
+          setUploading(false);
+
+      }catch(err){
+       console.log(err);
+       setUploading(false);
+      }
+    }
             
      
 
@@ -118,6 +144,9 @@ const ProductEditScreen = ({ match, history }) => {
                 <Form.Control type="text" placeholder="Image"
                  value={image} 
                  onChange={(e)=> setImage(e.target.value)} />
+                 <Form.File id='image-file' label='Choose File' custom onChange={uploadFileHandler}>
+                 </Form.File>
+                 {uploading && <Loader />}
             </Form.Group>
 
             <Form.Group controlId="brand">
@@ -139,7 +168,7 @@ const ProductEditScreen = ({ match, history }) => {
              <Button variant="primary" type="submit" id="user-update">
                 Update
             </Button>
-        </Form>
+            </Form>
             )}
             
         </FormContainer>

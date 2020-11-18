@@ -15,6 +15,7 @@ export const productListReducer = (state={ products:[] }, action)=>{
 }
 
 
+// single product
 export const productReducer = (state={ product:{ reviews: [] } }, action)=>{
     switch(action.type){
         case PRODUCT_REQUEST :
