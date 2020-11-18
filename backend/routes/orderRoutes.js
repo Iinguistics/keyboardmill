@@ -8,7 +8,7 @@ router.get('/myorders', protect, getMyOrders);
 router.get("/:id", protect, getOrderById);
 router.put("/:id/pay", protect, updateOrderToPaid);
 router.get("/", protect,admin, getOrders);
-router.put("/:id/delivered", protect,admin, updateOrderToDelivered);
+router.put("/:id/delivered", protect, admin,  updateOrderToDelivered);
 
 
 
