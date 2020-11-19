@@ -1,4 +1,4 @@
-import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_REQUEST, PRODUCT_SUCCESS, PRODUCT_FAIL, PRODUCT_REMOVE_REQUEST, PRODUCT_REMOVE_SUCCESS, PRODUCT_REMOVE_FAIL, PRODUCT_EDIT_REQUEST, PRODUCT_EDIT_SUCCESS, PRODUCT_EDIT_FAIL, PRODUCT_EDIT_RESET, PRODUCT_CREATE_REQUEST, PRODUCT_CREATE_SUCCESS, PRODUCT_CREATE_FAIL, PRODUCT_CREATE_RESET } from '../actions/types';
+import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_REQUEST, PRODUCT_SUCCESS, PRODUCT_FAIL, PRODUCT_REMOVE_REQUEST, PRODUCT_REMOVE_SUCCESS, PRODUCT_REMOVE_FAIL, PRODUCT_EDIT_REQUEST, PRODUCT_EDIT_SUCCESS, PRODUCT_EDIT_FAIL, PRODUCT_EDIT_RESET, PRODUCT_CREATE_REQUEST, PRODUCT_CREATE_SUCCESS, PRODUCT_CREATE_FAIL, PRODUCT_CREATE_RESET, PRODUCT_CREATE_REVIEW_REQUEST, PRODUCT_CREATE_REVIEW_SUCCESS,PRODUCT_CREATE_REVIEW_FAIL, PRODUCT_CREATE_REVIEW_RESET } from '../actions/types';
 
 export const productListReducer = (state={ products:[] }, action)=>{
   switch(action.type){
@@ -76,6 +76,23 @@ export const productEditReducer = (state= { product: {} }, action)=>{
         case PRODUCT_CREATE_RESET:
             return {}
             
+            default:
+              return state;
+    }
+}
+
+
+// For a user to create a product review..Private
+export const createProductReviewReducer = (state= { }, action)=>{
+    switch(action.type){
+        case PRODUCT_CREATE_REVIEW_REQUEST :
+            return {loading: true }
+        case PRODUCT_CREATE_REVIEW_SUCCESS:
+            return { loading: false, success:true }
+        case PRODUCT_CREATE_REVIEW_FAIL:
+            return { loading: false, error: action.payload }
+        case PRODUCT_CREATE_REVIEW_RESET:
+            return { review: {} }    
             default:
               return state;
     }

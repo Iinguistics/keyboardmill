@@ -1,4 +1,4 @@
-import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_REQUEST, PRODUCT_SUCCESS, PRODUCT_FAIL, PRODUCT_REMOVE_REQUEST, PRODUCT_REMOVE_SUCCESS, PRODUCT_REMOVE_FAIL, PRODUCT_EDIT_REQUEST, PRODUCT_EDIT_SUCCESS, PRODUCT_EDIT_FAIL, PRODUCT_CREATE_REQUEST, PRODUCT_CREATE_SUCCESS, PRODUCT_CREATE_FAIL } from '../actions/types';
+import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_REQUEST, PRODUCT_SUCCESS, PRODUCT_FAIL, PRODUCT_REMOVE_REQUEST, PRODUCT_REMOVE_SUCCESS, PRODUCT_REMOVE_FAIL, PRODUCT_EDIT_REQUEST, PRODUCT_EDIT_SUCCESS, PRODUCT_EDIT_FAIL, PRODUCT_CREATE_REQUEST, PRODUCT_CREATE_SUCCESS, PRODUCT_CREATE_FAIL, PRODUCT_CREATE_REVIEW_REQUEST, PRODUCT_CREATE_REVIEW_SUCCESS,PRODUCT_CREATE_REVIEW_FAIL  } from '../actions/types';
 import axios from 'axios';
 
 export const listProducts = () => async(dispatch)=>{
@@ -135,6 +135,39 @@ export const fetchProduct = (id) => async(dispatch)=>{
     }catch(error){
      dispatch({
          type: PRODUCT_CREATE_FAIL,
+         payload: error.response && error.response.data.message ? error.response.data.message : error.message
+     })
+    }
+ }
+
+
+
+  // For a user to create a product review..Private
+  export const createProductReview = (id, review)=> async (dispatch, getState)=>{
+    try{
+       dispatch({
+           type: PRODUCT_CREATE_REVIEW_REQUEST
+       })
+
+       const { userLogin: { userInfo } } = getState();
+
+       const config = {
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${userInfo.token}`
+        }
+    }
+ 
+      
+       await axios.post(`/api/products/${id}/reviews`, review, config)
+ 
+       dispatch({
+           type: PRODUCT_CREATE_REVIEW_SUCCESS,
+       })
+
+    }catch(error){
+     dispatch({
+         type: PRODUCT_CREATE_REVIEW_FAIL,
          payload: error.response && error.response.data.message ? error.response.data.message : error.message
      })
     }
