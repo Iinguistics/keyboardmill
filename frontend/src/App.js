@@ -31,6 +31,8 @@ import ProductEditScreen from './screens/ProductEditScreen';
         <ToastProvider autoDismiss={true} autoDismissTimeout={3500} placement='bottom-center' >
         <Route path="/" exact component={HomeScreen} />
         <Route path="/search/:keyword" exact component={HomeScreen} />
+        <Route path="/page/:pageNumber" exact component={HomeScreen} />
+        <Route path="/search/:keyword/page/:pageNumber" exact component={HomeScreen} />
         <Route path="/product/:id"  component={ProductScreen} />
         <Route path= "/cart/:id?"  component={CartScreen} />
         <Route path= "/login"  component={LoginScreen} />
@@ -42,7 +44,8 @@ import ProductEditScreen from './screens/ProductEditScreen';
         <Route path= "/order/:id" component={OrderDetailScreen} />
         <Route path= "/admin/userlist" component={UserListScreen} />
         <Route path= "/admin/user/edit/:id" component={UserEditScreen} />
-        <Route path= "/admin/productlist" component={ProductListScreen} />
+        <Route path= "/admin/productlist" exact component={ProductListScreen} />
+        <Route path= "/admin/productlist/:pageNumber" exact component={ProductListScreen} />
         <Route path= "/admin/orderlist" component={OrderListScreen} />
         <Route path= "/admin/product/edit/:id" component={ProductEditScreen} />
         </ToastProvider>

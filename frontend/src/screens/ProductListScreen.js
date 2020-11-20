@@ -5,18 +5,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { listProducts, removeProduct, createProduct } from '../actions/productActions';
 import Loader from '../components/bootstrapHelpers/Loader';
 import Message from '../components/bootstrapHelpers/Message';
+import Paginate from '../components/Paginate';
 import { useToasts } from 'react-toast-notifications';
 import { PRODUCT_CREATE_RESET } from '../actions/types';
 
 
-const ProductListScreen = ({ history }) => {
+const ProductListScreen = ({ history, match }) => {
+    const pageNumber = match.params.pageNumber || 1;
+
     const dispatch = useDispatch();
 
     const userLogin = useSelector(state => state.userLogin);
     const{ userInfo } = userLogin;
 
     const productList = useSelector(state => state.productList);
-    const { products, loading, error } = productList;
+    const { products, loading, error, page, pages } = productList;
     
     const removedProduct = useSelector(state => state.removedUser);
     const { error:removedProductError } = removedProduct;
@@ -33,11 +36,11 @@ const ProductListScreen = ({ history }) => {
             history.push('/');
         }
         if(success){
-            history.push(`/admin/product/edit/${createdProduct._id}`)
+            history.push(`/admin/product/edit/${createdProduct._id}`);
         }else{
-            dispatch(listProducts());
+            dispatch(listProducts('', pageNumber));
         }
-    }, [dispatch, history, userInfo, success]);
+    }, [dispatch, history, userInfo, success, pageNumber]);
 
 
     const deleteHandler = (id, productName)=>{
@@ -76,6 +79,7 @@ const ProductListScreen = ({ history }) => {
             {removedProductError && <Message variant="danger">{removedProductError}</Message>}
             {createdProductError && <Message variant="danger">{createdProductError}</Message>}
             {loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : (
+                <>
                 <Table striped bordered hover responsive className="table-sm">
                     <thead>
                         <tr>
@@ -108,6 +112,8 @@ const ProductListScreen = ({ history }) => {
                         ))}
                     </tbody>
                 </Table>
+                <Paginate pages={pages} page={page} isAdmin={true} />
+                </>
             )}
         </div>
     )
