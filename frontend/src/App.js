@@ -30,6 +30,7 @@ import ProductEditScreen from './screens/ProductEditScreen';
         <Container>
         <ToastProvider autoDismiss={true} autoDismissTimeout={3500} placement='bottom-center' >
         <Route path="/" exact component={HomeScreen} />
+        <Route path="/search/:keyword" exact component={HomeScreen} />
         <Route path="/product/:id"  component={ProductScreen} />
         <Route path= "/cart/:id?"  component={CartScreen} />
         <Route path= "/login"  component={LoginScreen} />
