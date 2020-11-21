@@ -18,7 +18,6 @@ const ProductScreen = ({ match, history })=>{
 
     const dispatch = useDispatch();
 
-
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin;
 
@@ -31,11 +30,12 @@ const ProductScreen = ({ match, history })=>{
 
     const { addToast } = useToasts();
 
-    
+
    
     useEffect(()=>{
         dispatch(fetchProduct(match.params.id));
-
+        dispatch(listMyOrders());
+        
         if(success){
             addToast(`${product.name} has now been reviewed`, {
                 appearance: 'success'

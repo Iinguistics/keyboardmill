@@ -27,9 +27,9 @@ const ProfileScreen = ({ location, history }) => {
      const userProfileUpdate = useSelector(state => state.userProfileUpdate);
      const { success } = userProfileUpdate;
 
-     const orderListMy = useSelector(state => state.orderListMy);
+     
+const orderListMy = useSelector(state => state.orderListMy);
      const { orders, loading:listLoading, error:listError } = orderListMy;
-
      
       
      useEffect(()=>{
@@ -114,7 +114,7 @@ const ProfileScreen = ({ location, history }) => {
         </Col>
         <Col md={9}> 
             <h2>My Orders</h2>
-            {listError ? <Message variant="danger">{listError}</Message> : orders ? <h4>You have no order history</h4> :
+            {listError ? <Message variant="danger">{listError}</Message> : 
              listLoading ? <Loader /> : (
                  <Table striped bordered hover responsive className="table-sm">
                      <thead>

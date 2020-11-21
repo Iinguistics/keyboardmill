@@ -1,5 +1,6 @@
 main{
     font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
 }
 
 .bg{
@@ -36,6 +37,7 @@ h1{
     background-color: #333;
     min-width: 100%;
     left:0;
+    right: 0;
     bottom:0;
   }
 
