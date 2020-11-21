@@ -1,5 +1,5 @@
 main{
-    min-height: 80vh;
+    font-family: 'Roboto', sans-serif;
 }
 
 .bg{
@@ -29,4 +29,13 @@ h1{
     margin-right: 0.75rem;
 }
 
+
+.footer {
+    height: 75px;
+    margin-top: 50px;
+    background-color: #333;
+    min-width: 100%;
+    left:0;
+    bottom:0;
+  }
 

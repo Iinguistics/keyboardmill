@@ -114,7 +114,7 @@ const ProfileScreen = ({ location, history }) => {
         </Col>
         <Col md={9}> 
             <h2>My Orders</h2>
-            {listError ? <Message variant="danger">{listError}</Message> :
+            {listError ? <Message variant="danger">{listError}</Message> : orders ? <h4>You have no order history</h4> :
              listLoading ? <Loader /> : (
                  <Table striped bordered hover responsive className="table-sm">
                      <thead>

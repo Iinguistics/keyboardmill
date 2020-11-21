@@ -52,7 +52,7 @@ const HomeScreen = ({ match }) => {
 
     return (
         <div>
-            <h1 className ="my-5">Latest Products</h1>
+            <h1 className ="my-5">Products</h1>
             <Row>
             {renderProducts()}
             </Row>
