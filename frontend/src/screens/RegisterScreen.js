@@ -41,7 +41,6 @@ const RegisterScreen = ({ location, history }) => {
             setPasswordError(true);
         }else{
             dispatch(register(name,email,password));
-            //history.push()
         }
     }
 
@@ -75,14 +74,16 @@ const RegisterScreen = ({ location, history }) => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Enter password"
                      value={password} 
-                     onChange={(e)=> setPassword(e.target.value)} />
+                     onChange={(e)=> setPassword(e.target.value)}
+                     minlength="6" />
                 </Form.Group>
 
                 <Form.Group controlId="verifyPassword">
                     <Form.Label>Confirm Password</Form.Label>
                     <Form.Control type="password" placeholder="Enter password"
                      value={verifyPassword} 
-                     onChange={(e)=> setVerifyPassword(e.target.value)} />
+                     onChange={(e)=> setVerifyPassword(e.target.value)}
+                     minlength="6" />
                 </Form.Group>
 
                  <Button variant="primary" type="submit">
