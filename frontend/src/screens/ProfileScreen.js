@@ -28,7 +28,7 @@ const ProfileScreen = ({ location, history }) => {
      const { success } = userProfileUpdate;
 
      
-const orderListMy = useSelector(state => state.orderListMy);
+     const orderListMy = useSelector(state => state.orderListMy);
      const { orders, loading:listLoading, error:listError } = orderListMy;
      
       

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import Product from '../components/Product';
 import { Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,7 +6,7 @@ import { listProducts } from '../actions/productActions';
 import Loader from '../components/bootstrapHelpers/Loader';
 import Message from '../components/bootstrapHelpers/Message';
 import Paginate from '../components/Paginate';
-
+import Meta from '../components/Meta';
 
 
 const HomeScreen = ({ match }) => {
@@ -51,13 +51,14 @@ const HomeScreen = ({ match }) => {
   
 
     return (
-        <div>
+        <Fragment>
+            <Meta />
             <h1 className ="my-5">Products</h1>
             <Row>
             {renderProducts()}
             </Row>
             <Paginate pages={pages} page={page} keyword={keyword ? keyword : ''} />
-        </div>
+        </Fragment>
     )
 }
 

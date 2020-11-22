@@ -8,13 +8,14 @@ import Loader from '../components/bootstrapHelpers/Loader';
 import Message from '../components/bootstrapHelpers/Message';
 import { PRODUCT_CREATE_REVIEW_RESET } from '../actions/types';
 import { useToasts } from 'react-toast-notifications';
-
+import Meta from '../components/Meta';
 
 
 const ProductScreen = ({ match, history })=>{
     const [qty, setQty] = useState(1);
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState("");
+    const [orderItems, setOrderItems] = useState([]);
 
     const dispatch = useDispatch();
 
@@ -28,14 +29,15 @@ const ProductScreen = ({ match, history })=>{
     const { loading:reviewLoading, error:reviewError, success } = createProductReviewState;
 
 
+
     const { addToast } = useToasts();
 
 
+    
    
     useEffect(()=>{
         dispatch(fetchProduct(match.params.id));
-        dispatch(listMyOrders());
-        
+       
         if(success){
             addToast(`${product.name} has now been reviewed`, {
                 appearance: 'success'
@@ -45,6 +47,10 @@ const ProductScreen = ({ match, history })=>{
             dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
         }
         }, [dispatch, success]);
+
+        
+       
+         
 
 
         const selectQty = ()=>{
@@ -96,6 +102,7 @@ const ProductScreen = ({ match, history })=>{
                  return(
                      <div>
                      <Link className="btn btn-light my-5" to="/">Go back</Link>
+                     <Meta title={product.name}  />
                     <Row>
                         <Col md={6}>
                         <Image src={product.image} alt={product.name} fluid/>
