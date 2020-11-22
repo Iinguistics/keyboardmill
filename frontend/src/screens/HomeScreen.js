@@ -1,4 +1,5 @@
 import React, { useEffect, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import Product from '../components/Product';
 import { Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -53,6 +54,7 @@ const HomeScreen = ({ match }) => {
     return (
         <Fragment>
             <Meta />
+            {keyword && <Link to="/" className="btn btn-light mt-5">Go Back</Link>}
             <h1 className ="my-5">Products</h1>
             <Row>
             {renderProducts()}
